@@ -10,6 +10,12 @@ class Counter {
         return count
     }
 
+    /** decrement and returns the new value */
+    fun decrement(): Int {
+        count -= 1
+        return count
+    }
+
     /** read-only getter */
     fun getCount(): Int {
         return count

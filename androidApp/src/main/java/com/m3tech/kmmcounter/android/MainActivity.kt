@@ -41,7 +41,7 @@ class MainActivity : ComponentActivity() {
 }
 
 /**
- * ✅ This is the actual UI Composable that uses the shared Counter logic.
+ *  This is the actual UI Composable that uses the shared Counter logic.
  */
 @Composable
 fun CounterScreen(counter: Counter) {
@@ -61,6 +61,12 @@ fun CounterScreen(counter: Counter) {
         }) {
             Text(text = "Increment")
         }
+        Spacer(modifier = Modifier.height(4.dp))
+        Button(onClick = {
+            value = counter.decrement()
+        }) {
+            Text(text = "Decrement")
+        }
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = {
             counter.reset()
@@ -71,12 +77,26 @@ fun CounterScreen(counter: Counter) {
     }
 }
 
-/**
- * Preview function to see the UI directly in Android Studio.
- * For preview, we can use a local Counter (not the one from Activity).
- */
-@Preview(showBackground = true)
+@Preview(
+    name = "Light Mode",
+    showBackground = true,
+    backgroundColor = 0xFFFFFFFF
+)
 @Composable
-fun CounterScreenPreview() {
-    CounterScreen(counter = Counter())
+fun LightPreview() {
+    MyApplicationTheme(darkTheme = false) {
+        CounterScreen(counter = Counter())
+    }
+}
+
+@Preview(
+    name = "Dark Mode",
+    showBackground = true,
+    backgroundColor = 0xFF000000
+)
+@Composable
+fun DarkPreview() {
+    MyApplicationTheme(darkTheme = true) {
+        CounterScreen(counter = Counter())
+    }
 }
